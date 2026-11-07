@@ -42,7 +42,7 @@ p{margin:0}
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 15px/1 var(--f-body);padding:14px 22px;border-radius:999px;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .15s,background .2s,border-color .2s}
 .btn:hover{transform:translateY(-1px)}
-.btn-primary{background:var(--grad);color:#04101F;box-shadow:0 8px 30px -10px rgba(47,140,255,.7)}
+.btn-primary{background:var(--grad);background-origin:border-box;background-repeat:no-repeat;border:0;padding:15px 23px;color:#04101F;box-shadow:0 8px 30px -10px rgba(47,140,255,.7)}
 .btn-ghost{background:transparent;color:var(--fg);border-color:var(--line-2)}
 .btn-ghost:hover{border-color:var(--blue)}
 
@@ -70,6 +70,7 @@ header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backgroun
 .nav-links a:hover{color:var(--fg)}
 .nav-cta{display:flex;gap:10px}
 .nav-cta .btn{padding:11px 18px;font-size:14px}
+.nav-cta .btn-primary{padding:12px 19px}
 .menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line-2);color:var(--fg);border-radius:10px;padding:8px 12px;font:600 14px var(--f-body);cursor:pointer}
 @media (max-width:1100px){
   .nav-links,.nav-cta .btn-ghost{display:none}
