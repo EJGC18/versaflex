@@ -20,33 +20,25 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0;height:100%}
-body{background:var(--desk);font-family:var(--disp);color:var(--ink);display:flex;flex-direction:column;min-height:100vh}
+body{background:var(--desk);font-family:var(--disp);color:var(--ink);display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden}
 a{color:var(--blue)}
 :focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 
 .top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 24px;color:var(--navy);font-size:15px}
 .top .mast{font-size:22px}
-.stage{flex:1;display:flex;align-items:center;justify-content:center;padding:8px 16px 0}
-.book-wrap{width:100%;max-width:min(1240px, calc((100vh - 150px) * 1.545));margin:0 auto}
+.stage{flex:1;min-height:0;overflow:auto;display:flex;align-items:safe center;justify-content:safe center;padding:8px 16px 0}
+.book-wrap{--base:min(1240px, calc((100vh - 170px) * 1.545), calc(100vw - 32px));width:calc(var(--base) * var(--z,1));flex:none;margin:0 auto}
 .book{width:100%}
-@media (max-width:700px){.book-wrap{max-width:100%}}
+
 .bar{display:flex;align-items:center;justify-content:center;gap:16px;padding:14px 16px 22px;color:var(--navy)}
 .bar button{font:600 15px/1 var(--disp);color:#fff;background:var(--navy);border:0;border-radius:999px;min-height:44px;padding:0 20px;cursor:pointer}
 .bar button:disabled{opacity:.35;cursor:default}
 .bar output{font-size:15px;min-width:130px;text-align:center}
 .bar button.ghost{background:transparent;color:var(--navy);border:2px solid var(--navy)}
-.zoom{position:fixed;inset:0;z-index:50;background:rgba(14,35,64,.92);display:flex;flex-direction:column}
-.zoom[hidden]{display:none}
-.zoom-bar{display:flex;justify-content:center;align-items:center;gap:12px;padding:12px;background:var(--navy);color:#fff}
-.zoom-bar button{font:700 18px/1 var(--disp);min-width:44px;min-height:44px;border-radius:999px;border:0;background:#fff;color:var(--navy);cursor:pointer;padding:0 16px}
-.zoom-bar button.close{font-size:15px;background:var(--tape)}
-.zoom-bar output{font:600 15px/1 var(--disp);min-width:64px;text-align:center}
-.zoom-pages{flex:1;overflow:auto;display:flex;gap:16px;padding:24px;align-items:flex-start}
-.zoom-pages .zp{flex:none;position:relative;overflow:hidden;margin:0 auto;box-shadow:0 20px 50px rgba(0,0,0,.4)}
-.zoom-pages .zp+.zp{margin-left:0}
-.zoom-pages .zp:first-child:not(:only-child){margin-right:0}
-.zoom-pages .sheet{position:absolute;left:0;top:0}
 .bar{flex-wrap:wrap}
+.zoomctl{display:flex;align-items:center;gap:6px;margin-left:8px}
+.zoomctl output{min-width:58px;text-align:center}
+.bar .zoomctl button{padding:0;width:44px;font-size:20px}
 .hint{font-size:13px;color:var(--muted);text-align:center;padding:0 16px 18px;margin:0}
 
 /* page shell: each sheet is designed at 816 x 1056 (Letter at 96 dpi) and scaled to the page */
@@ -397,13 +389,9 @@ negocio.entregar(); // en 3 a 6 semanas</pre>
 <button type="button" id="prev" aria-label="Página anterior">Anterior</button>
 <output id="pos" aria-live="polite">Portada</output>
 <button type="button" id="next" aria-label="Página siguiente">Siguiente</button>
-<button type="button" id="zoom" class="ghost" aria-haspopup="dialog">Ampliar</button>
+<span class="zoomctl" role="group" aria-label="Zoom"><button type="button" id="zOut" class="ghost" aria-label="Alejar">−</button><output id="zLevel">100 %</output><button type="button" id="zIn" class="ghost" aria-label="Acercar">+</button></span>
 </nav>
-<div class="zoom" id="zoomView" role="dialog" aria-modal="true" aria-label="Vista ampliada" hidden>
-<div class="zoom-bar"><button type="button" id="zOut" aria-label="Alejar">−</button><output id="zLevel">100 %</output><button type="button" id="zIn" aria-label="Acercar">+</button><button type="button" id="zClose" class="close">Cerrar</button></div>
-<div class="zoom-pages" id="zoomPages"></div>
-</div>
-<p class="hint">Arrastra la esquina de la hoja, haz clic en ella o usa las flechas del teclado para pasar de página. Con Ampliar ves las páginas abiertas en grande.</p>
+<p class="hint">Arrastra la esquina de la hoja, haz clic en ella o usa las flechas del teclado para pasar de página. Con + y − haces zoom sin dejar de pasar páginas.</p>
 <script src="vendor/page-flip.browser.js"></script>
 <script>
 (function () {
@@ -414,7 +402,7 @@ negocio.entregar(); // en 3 a 6 semanas</pre>
 
   const flip = new St.PageFlip(bookEl, {
     width: 612, height: 792, size: 'stretch',
-    minWidth: 280, maxWidth: 816, minHeight: 362, maxHeight: 1056,
+    minWidth: 280, maxWidth: 1632, minHeight: 362, maxHeight: 2112,
     showCover: true, usePortrait: true, maxShadowOpacity: 0.45,
     flippingTime: reduce ? 1 : 900, mobileScrollSupport: true, autoSize: true
   });
@@ -452,53 +440,30 @@ negocio.entregar(); // en 3 a 6 semanas</pre>
   prev.addEventListener('click', () => flip.flipPrev());
   next.addEventListener('click', () => flip.flipNext());
 
-  // zoom view: shows the open page(s) at a readable size
-  const zv = document.getElementById('zoomView');
-  const zp = document.getElementById('zoomPages');
+  // zoom: enlarges the flipbook itself so pages still turn
+  const levels = [1, 1.25, 1.5, 2];
+  let zi = 0;
   const zl = document.getElementById('zLevel');
-  const levels = [0.75, 1, 1.25, 1.5, 2];
-  let zi = 1, lastFocus = null;
-  function visibleIdx() {
-    const i = flip.getCurrentPageIndex();
-    if (flip.getOrientation() === 'landscape' && i > 0 && i < total - 1) return [i, i + 1];
-    return [i];
-  }
-  function renderZoom() {
-    const z = levels[zi];
-    zl.textContent = Math.round(z * 100) + ' %';
-    zp.querySelectorAll('.zp').forEach((box) => {
-      box.style.width = 816 * z + 'px';
-      box.style.height = 1056 * z + 'px';
-      box.firstElementChild.style.transform = 'scale(' + z + ')';
+  const zIn = document.getElementById('zIn');
+  const zOut = document.getElementById('zOut');
+  function setZoom(n) {
+    zi = Math.max(0, Math.min(levels.length - 1, n));
+    document.documentElement.style.setProperty('--z', levels[zi]);
+    zl.textContent = Math.round(levels[zi] * 100) + ' %';
+    zOut.disabled = zi === 0;
+    zIn.disabled = zi === levels.length - 1;
+    requestAnimationFrame(() => {
+      try { flip.update(); } catch (e) {}
+      window.dispatchEvent(new Event('resize'));
+      scaleSheets();
     });
   }
-  function openZoom() {
-    zp.innerHTML = '';
-    visibleIdx().forEach((k) => {
-      const box = document.createElement('div');
-      box.className = 'zp';
-      const sheet = pages[k].querySelector('.sheet').cloneNode(true);
-      box.appendChild(sheet);
-      zp.appendChild(box);
-    });
-    zi = window.innerWidth < 900 ? 0 : 1;
-    renderZoom();
-    lastFocus = document.activeElement;
-    zv.hidden = false;
-    document.getElementById('zClose').focus();
-  }
-  function closeZoom() { zv.hidden = true; zp.innerHTML = ''; if (lastFocus) lastFocus.focus(); }
-  document.getElementById('zoom').addEventListener('click', openZoom);
-  document.getElementById('zClose').addEventListener('click', closeZoom);
-  document.getElementById('zIn').addEventListener('click', () => { zi = Math.min(levels.length - 1, zi + 1); renderZoom(); });
-  document.getElementById('zOut').addEventListener('click', () => { zi = Math.max(0, zi - 1); renderZoom(); });
+  zIn.addEventListener('click', () => setZoom(zi + 1));
+  zOut.addEventListener('click', () => setZoom(zi - 1));
+  setZoom(0);
   document.addEventListener('keydown', (e) => {
-    if (!zv.hidden) {
-      if (e.key === 'Escape') closeZoom();
-      if (e.key === '+' || e.key === '=') document.getElementById('zIn').click();
-      if (e.key === '-') document.getElementById('zOut').click();
-      return;
-    }
+    if (e.key === '+' || e.key === '=') setZoom(zi + 1);
+    if (e.key === '-') setZoom(zi - 1);
     if (e.key === 'ArrowRight') flip.flipNext();
     if (e.key === 'ArrowLeft') flip.flipPrev();
   });
