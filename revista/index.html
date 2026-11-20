@@ -35,6 +35,8 @@ a{color:var(--cobalt)}
 .bar button:disabled{opacity:.35;cursor:default;box-shadow:none}
 .bar button.ghost{background:#fff;color:var(--ink);border:2px solid var(--ink);box-shadow:none}
 .bar output{font-size:15px;font-weight:600;min-width:130px;text-align:center}
+.bar a.dl{font:700 15px/44px var(--disp);color:var(--ink);background:#fff;border:2px solid var(--ink);height:44px;padding:0 18px;text-decoration:none;box-sizing:border-box}
+.bar a.dl:hover{background:var(--mist)}
 .zoomctl{display:flex;align-items:center;gap:6px;margin-left:8px}
 .zoomctl output{min-width:58px}
 .bar .zoomctl button{padding:0;width:44px;font-size:20px}
@@ -420,6 +422,7 @@ negocio.entregar(); // en 3 a 6 semanas</pre>
 <button type="button" id="prev" aria-label="Página anterior">Anterior</button>
 <output id="pos" aria-live="polite">Portada</output>
 <button type="button" id="next" aria-label="Página siguiente">Siguiente</button>
+<a class="dl" href="FLEX-revista-VersaFlex.pdf" download>Descargar PDF</a>
 <span class="zoomctl" role="group" aria-label="Zoom"><button type="button" id="zOut" class="ghost" aria-label="Alejar">−</button><output id="zLevel">100 %</output><button type="button" id="zIn" class="ghost" aria-label="Acercar">+</button></span>
 </nav>
 <p class="hint">Arrastra la esquina de la hoja, haz clic en ella o usa las flechas del teclado para pasar de página. Con + y − haces zoom sin dejar de pasar páginas.</p>
