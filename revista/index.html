@@ -244,6 +244,13 @@ tbody th{font-weight:700}
 .mock-row{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:6px;font-size:12.5px}
 .mock-row .re{color:var(--cobalt);font-weight:700}
 .cv-head{display:flex;flex-direction:column;align-items:flex-start}
+/* VersaFlex logo */
+.cv-brand{display:flex;align-items:center;gap:12px}
+.cv-brand img{width:66px;height:48px;object-fit:cover;border-radius:10px;box-shadow:0 0 0 2px rgba(255,255,255,.25)}
+.sec-logo{position:absolute;right:0;top:-6px;width:118px;height:86px;object-fit:cover;border-radius:12px;box-shadow:5px 5px 0 var(--orange)}
+.label-name{display:flex;align-items:center;gap:10px}
+.label-logo{width:44px;height:32px;object-fit:cover;border-radius:6px}
+.back-logo{position:absolute;right:56px;top:48px;width:200px;height:145px;object-fit:cover;border-radius:18px;box-shadow:8px 8px 0 var(--orange)}
 /* back cover */
 .back{background:var(--ink);color:#fff}
 .back .mast.big{position:absolute;left:56px;top:56px;font-size:56px;color:#fff}
@@ -281,7 +288,7 @@ tbody th{font-weight:700}
 </div>
 </figure>
 <div class="cv-bottom">
-<div class="cv-head"><span class="cv-kicker">Especial VersaFlex Soluciones Software</span>
+<div class="cv-head"><div class="cv-brand"><img src="img/versaflex-logo.jpg" alt="Logotipo de VersaFlex"><span class="cv-kicker">Especial VersaFlex Soluciones Software</span></div>
 <p class="cv-title">Tú lo imaginas. Nosotros lo hacemos realidad.</p></div>
 <ul class="cv-lines">
 <li>Seis plantillas para digitalizar la MIPYME panameña</li>
@@ -331,6 +338,7 @@ tbody th{font-weight:700}
 <p>Una idea puede convertirse en un emprendimiento real, pero no pasa sola. Hace falta mirar alrededor, preguntarse qué falta, aprovechar lo que ya sabes hacer y, sobre todo, mantenerse en ello cuando la idea todavía no tiene forma. Si estás pensando en emprender, empieza con la misma pregunta que nos hicimos nosotros: ¿qué necesita la gente a mi alrededor?</p></div></div></div></div>
 <div class="page" aria-label="Página 6: Misión, visión y función"><div class="sheet"><svg class="deco" style="left:-70px;bottom:30px;width:250px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.8"/><line x1="19.00" y1="12.00" x2="21.50" y2="12.00" stroke-width="2.4"/><line x1="16.95" y1="16.95" x2="18.72" y2="18.72" stroke-width="2.4"/><line x1="12.00" y1="19.00" x2="12.00" y2="21.50" stroke-width="2.4"/><line x1="7.05" y1="16.95" x2="5.28" y2="18.72" stroke-width="2.4"/><line x1="5.00" y1="12.00" x2="2.50" y2="12.00" stroke-width="2.4"/><line x1="7.05" y1="7.05" x2="5.28" y2="5.28" stroke-width="2.4"/><line x1="12.00" y1="5.00" x2="12.00" y2="2.50" stroke-width="2.4"/><line x1="16.95" y1="7.05" x2="18.72" y2="5.28" stroke-width="2.4"/></svg><svg class="deco" style="left:-34px;top:120px;width:130px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5"/><path d="M12 12v10"/></svg><svg class="deco" style="left:-24px;top:430px;width:80px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="12" cy="16" r="1.2"/></svg><header class="band"><span class="mast">FLEX</span><span class="band-sec">La empresa</span><b class="band-num">06</b></header>
 <footer class="foot"><span>Revista FLEX, edición 1, noviembre 2026</span><span>VersaFlex Soluciones Software</span></footer><div class="body"><div class="sec"><span class="num">04</span><h2>Misión, visión y función</h2></div>
+<img class="sec-logo" src="img/versaflex-logo.jpg" alt="Logotipo de VersaFlex">
 <div class="mv">
 <div class="mv-m"><h3>Misión</h3><p>Ofrecer plantillas de software confiables y adaptables a la operación de cada MIPYME, reduciendo costo y tiempo frente al desarrollo a la medida, sin sacrificar seguridad ni calidad en el servicio.</p></div>
 <div class="mv-v"><h3>Visión</h3><p>Ser la empresa panameña de referencia en soluciones de software configurables, reconocida por convertir la digitalización en un proceso rápido, seguro y accesible para las MIPYME de Panamá y la región.</p></div>
@@ -392,7 +400,7 @@ tbody th{font-weight:700}
 <h3 class="minor">Anexo A. Etiqueta de producto: VF Inventario</h3>
 <p>Cada plantilla se entrega con una etiqueta que le dice al cliente qué recibe, qué necesita para usarla y qué soporte adicional puede contratar. Esta es la de VF Inventario, la plantilla pensada para ferreterías, minisúper y distribuidoras.</p>
 <div class="label">
-<div class="label-top"><span class="label-name">VF Inventario</span><span>VF-INV, versión 1.0</span></div>
+<div class="label-top"><span class="label-name"><img class="label-logo" src="img/versaflex-logo.jpg" alt="">VF Inventario</span><span>VF-INV, versión 1.0</span></div>
 <div class="label-sub">Control de stock, entradas, salidas y alertas de mínimo.</div>
 <div class="lbl-row"><b>Contenido</b><span>Módulo de inventario multisucursal, lector de código de barras, kardex y reportes.</span></div>
 <div class="lbl-row"><b>Requisitos</b><span>Navegador web actualizado e internet. Funciona en computadora, tableta y celular.</span></div>
@@ -407,6 +415,7 @@ tbody th{font-weight:700}
 <p>La factura electrónica que hoy deben adoptar los negocios panameños tiene su base en la Ley 256 del 26 de noviembre de 2021, publicada en la Gaceta Oficial N.° 29424-B. Esta ley modificó la Ley 76 de 1976 sobre medidas tributarias y le dio sustento jurídico al Sistema de Factura Electrónica de Panamá. Por eso VersaFlex incluye VF Factura, un módulo que emite facturas desde el mismo sistema donde el cliente ya lleva su inventario y sus ventas.</p></div></div></div>
 <div class="page" data-density="hard" aria-label="Contraportada"><div class="sheet cover back">
 <span class="mast big">FLEX</span>
+<img class="back-logo" src="img/versaflex-logo.jpg" alt="Logotipo de VersaFlex">
 <pre class="code-deco" aria-hidden="true">const negocio = plantillas.elegir('VF Inventario');
 negocio.configurar({ marca, campos, permisos });
 await negocio.probar();
