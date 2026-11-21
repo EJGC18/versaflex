@@ -6,6 +6,10 @@
 <title>De la Idea al Sistema, edición 1: VersaFlex Soluciones Software</title>
 <meta name="description" content="Revista De la Idea al Sistema, edición 1, noviembre 2026. Especial VersaFlex Soluciones Software: plantillas de software para la MIPYME panameña.">
 <style>
+@font-face{font-family:'Tinos';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/tinos-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Tinos';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/tinos-latin-400-italic.woff2) format('woff2')}
+@font-face{font-family:'Tinos';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/tinos-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Tinos';font-style:italic;font-weight:700;font-display:swap;src:url(fonts/tinos-latin-700-italic.woff2) format('woff2')}
 @font-face{font-family:'Syne';font-style:normal;font-display:swap;font-weight:400 800;
   src:url(fonts/syne-latin-wght-normal.woff2) format('woff2-variations');
   unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
@@ -16,7 +20,7 @@
   --cobalt:#2E2B8C; --orange:#A5A1FF; --ink:#0D253D; --paper:#FFFFFF; --mist:#F3F4FB; --indigo:#533AFD;
   --line:#DCE0EE; --muted:#4B5B70; --desk:#E8EAF3;
   --disp:'Syne','Times New Roman',serif;
-  --body:'Times New Roman',Times,serif;
+  --body:'Times New Roman','Tinos',Times,serif;
   --navy:var(--ink); --blue:var(--cobalt); --wash:var(--mist);
 }
 *{box-sizing:border-box}
@@ -282,7 +286,7 @@ tbody th{font-weight:700}
 .sign{margin-top:auto;display:flex;gap:18px;align-items:center;border-top:1px solid var(--line);padding-top:16px}
 .sign img{width:92px;height:92px;border-radius:50%;object-fit:cover;object-position:50% 30%;border:3px solid var(--indigo)}
 .sign div{display:flex;flex-direction:column;gap:2px;font-size:14px;color:var(--muted)}
-.sign .sig{font:italic 400 34px/1 'Times New Roman',Times,serif;color:var(--indigo);margin-bottom:4px}
+.sign .sig{font:italic 400 34px/1 'Times New Roman','Tinos',Times,serif;color:var(--indigo);margin-bottom:4px}
 .sign b{font-size:16px;color:var(--ink)}
 .sumario{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
 .sumario a{display:grid;grid-template-columns:48px minmax(0,1fr) 70px;gap:14px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none}
@@ -296,7 +300,7 @@ tbody th{font-weight:700}
 .sm-fig img{width:100%;height:170px;object-fit:cover;object-position:50% 0%;border-radius:10px;box-shadow:6px 6px 0 var(--orange)}
 .sm-fig figcaption{font-size:13px;color:var(--muted)}
 .intro-fig{margin-top:6px}
-.intro-fig img{height:232px;object-fit:cover;object-position:50% 30%}
+.intro-fig img{height:170px;object-fit:cover;object-position:50% 30%}
 .letter-q{margin:auto 0 0}
 .sheet .letter-q p{font-size:28px}
 .letter-q + .sign{margin-top:24px}
@@ -508,7 +512,7 @@ body{background:radial-gradient(80% 60% at 50% 40%,#16245A 0%,#0B1530 60%,#070E2
 <h3 class="minor">Anexo B. Garantías de VersaFlex</h3>
 <div class="guar"><div><h4>Entrega a tiempo</h4><span>La fecha de entrega queda por escrito en la propuesta que firma el cliente.</span></div><div><h4>Tus datos son tuyos</h4><span>El cliente puede exportar toda su información en Excel o CSV cuando quiera, sin costo.</span></div><div><h4>Precio cerrado</h4><span>Cotización detallada por escrito antes de empezar. Lo que se firma es lo que se paga.</span></div><div><h4>Revisión doble</h4><span>Cada entrega pasa por la revisión cruzada de al menos dos roles del equipo.</span></div></div>
 <h3 class="minor">Anexo C. ¿Sabías que…?</h3>
-<p>La factura electrónica que hoy deben adoptar los negocios panameños tiene su base en la Ley 256 del 26 de noviembre de 2021, publicada en la Gaceta Oficial N.° 29424-B. Esta ley modificó la Ley 76 de 1976 sobre medidas tributarias y le dio sustento jurídico al Sistema de Factura Electrónica de Panamá. Por eso VersaFlex incluye VF Factura, un módulo que emite facturas desde el mismo sistema donde el cliente ya lleva su inventario y sus ventas.</p></div></div></div>
+<p>La factura electrónica que hoy deben adoptar los negocios panameños se basa en la Ley 256 del 26 de noviembre de 2021 (Gaceta Oficial N.° 29424-B), que modificó la Ley 76 de 1976 y le dio sustento jurídico al Sistema de Factura Electrónica de Panamá. Por eso VersaFlex incluye VF Factura, un módulo que factura desde el mismo sistema donde el cliente lleva su inventario y sus ventas.</p></div></div></div>
 <div class="page" data-density="hard" aria-label="Contraportada"><div class="sheet cover back">
 <span class="mast big tt">De la Idea<br>al Sistema</span>
 <img class="back-logo" src="img/versaflex-logo.jpg" alt="Logotipo de VersaFlex">
