@@ -547,10 +547,17 @@ negocio.entregar(); // en 3 a 6 semanas</pre>
   });
   flip.loadFromHTML(pages);
 
+  function pageWidth() {
+    let w = 0;
+    try { w = flip.getBoundsRect().pageWidth; } catch (e) {}
+    if (!w) pages.forEach((p) => { w = Math.max(w, p.offsetWidth); });
+    return w;
+  }
   function scaleSheets() {
-    const w = pages[0].getBoundingClientRect().width || pages[1].getBoundingClientRect().width;
+    const w = pageWidth();
     if (w) document.documentElement.style.setProperty('--s', (w / 816).toFixed(4));
   }
+  function rescaleSoon() { scaleSheets(); [60, 200, 450, 950].forEach((t) => setTimeout(scaleSheets, t)); }
   const prev = document.getElementById('prev');
   const next = document.getElementById('next');
   const pos = document.getElementById('pos');
@@ -572,7 +579,9 @@ negocio.entregar(); // en 3 a 6 semanas</pre>
   flip.on('flip', sync);
   flip.on('changeOrientation', sync);
   flip.on('update', sync);
-  new ResizeObserver(scaleSheets).observe(bookEl);
+  flip.on('changeState', scaleSheets);
+  new ResizeObserver(rescaleSoon).observe(bookEl);
+  window.addEventListener('resize', rescaleSoon);
   window.addEventListener('load', scaleSheets);
   setTimeout(sync, 50);
 
@@ -594,7 +603,7 @@ negocio.entregar(); // en 3 a 6 semanas</pre>
     requestAnimationFrame(() => {
       try { flip.update(); } catch (e) {}
       window.dispatchEvent(new Event('resize'));
-      scaleSheets();
+      rescaleSoon();
     });
   }
   zIn.addEventListener('click', () => setZoom(zi + 1));
